@@ -4,6 +4,8 @@
     gap: 20px;
     justify-content: center;
     align-items: center;
+    overflow: auto;
+    max-height: 500px;
 
     .quiz-player-settings-input {
         flex: 100%;
@@ -19,12 +21,6 @@
 
         input {
             font-size: var(--quiz-launch-font-size);
-            outline: none!important;
-            background-color: var(--secondary-light);
-            border: none;
-            border-bottom: 3px solid var(--secondary-color);
-            border-radius: 10px;
-            padding: 10px;
         }
     }
 }

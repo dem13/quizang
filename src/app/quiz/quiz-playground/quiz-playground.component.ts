@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
+import { GameSettings } from '../quiz-settings';
 
 @Component({
   selector: 'app-quiz-playground',
@@ -8,5 +9,8 @@ import { Component } from '@angular/core';
   styleUrl: './quiz-playground.component.scss'
 })
 export class QuizPlaygroundComponent {
-
+  @Input({ required: true }) gameSettings?: GameSettings;
+  stringify(data: any) {
+    return JSON.stringify(data);
+  }
 }

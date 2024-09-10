@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 
 @Component({
   selector: 'app-quiz-player-settings',
@@ -8,5 +8,12 @@ import { Component } from '@angular/core';
   styleUrl: './quiz-player-settings.component.scss'
 })
 export class QuizPlayerSettingsComponent {
-  playerNames = ['Demian', 'Ryan', 'David', 'Andrej']
+  @Input() playerNames: string[] = [];
+
+  onPlayerNameInput(playerIndex: number) {
+    const ctx = this;
+    return (event: any) => {
+      ctx.playerNames[playerIndex] = event.target.value
+    }
+  }
 }

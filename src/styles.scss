@@ -2,16 +2,19 @@
     --bg-color: #E2FDFF;
     --bg-elv-color: #BFD7FF;
     --bg-over-color: #9BB1FF;
-    --secondary-color: #5465FF;
-    --secondary-light: #788BFF;
+    --secondary-color: #031A6B;
+    --secondary-dark-color: #000d3a;
+    --secondary-light-color: #788BFF;
     --ft-color: #000;
+    --ft-light-color: #FFF;
 }
 
 * {
     box-sizing: border-box;
 }
 
-body, html {
+body,
+html {
     margin: 0;
     padding: 0;
 }
@@ -20,4 +23,17 @@ body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     background-color: var(--bg-color);
     color: var(--ft-color);
+}
+
+input {
+    outline: none !important;
+    background-color: var(--secondary-light-color);
+    border: none;
+    border-bottom: 3px solid var(--secondary-color);
+    border-radius: 10px;
+    padding: 10px;
+
+    &::placeholder {
+        color: var(--secondary-color);
+    }
 }

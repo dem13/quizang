@@ -10,7 +10,7 @@ describe('QuizLaunchButtonComponent', () => {
     await TestBed.configureTestingModule({
       imports: [QuizLaunchButtonComponent]
     })
-    .compileComponents();
+      .compileComponents();
 
     fixture = TestBed.createComponent(QuizLaunchButtonComponent);
     component = fixture.componentInstance;
