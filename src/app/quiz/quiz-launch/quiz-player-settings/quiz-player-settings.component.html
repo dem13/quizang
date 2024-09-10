@@ -1,0 +1,7 @@
+<div class="quiz-player-settings">
+    @for(playerName of playerNames; track playerName; let i = $index) {
+       <div class="quiz-player-settings-input">
+            <span>{{i + 1}}.</span> <input type="text" value="{{ playerName }}">
+        </div>
+    }
+</div>
