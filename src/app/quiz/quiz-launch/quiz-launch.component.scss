@@ -1,0 +1,33 @@
+
+.quiz-launch {
+    --quiz-launch-font-size: 20px;
+
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-template-areas: 
+        "header header header header"
+        "settings-left settings-left settings-right settings-right"
+        "controls controls controls controls";
+    row-gap: 50px;
+
+    .quiz-launch-header {
+        grid-area: header;
+        font-size: 32px;
+        font-weight: bold;
+        text-align: center;
+        
+    }
+
+    .quiz-launch-setting-container {
+        grid-area: settings-left;
+    }
+
+    .quiz-player-settings-container {
+        grid-area: settings-right;
+    }
+
+    .quiz-launch-button-container {
+        grid-area: controls;
+        text-align: center;
+    }
+}
