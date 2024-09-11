@@ -1,0 +1,13 @@
+.quiz-players-board {
+    display: flex;
+    gap: 20px;
+    align-items: center;
+    overflow: hidden;
+    flex-wrap: nowrap;
+    flex-grow: 0;
+    flex-basis: 200px;
+
+    .quiz-player-board-card-container {
+        min-width: 200px;
+    }
+}

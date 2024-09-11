@@ -1,0 +1,42 @@
+.quiz-player-board-card {
+    width: 100%;
+    background-color: var(--secondary-color);
+    color: var(--bg-color);
+    border-radius: 10px;
+    overflow: hidden;
+    cursor: pointer;
+    transition-property: background-color, color, border;
+    transition-duration: 0.5s;
+    border-bottom: 3px solid var(--secondary-color);
+
+
+    .quiz-player-board-card-image {
+        border-bottom: 2px solid var(--bg-color);
+        color: var(--bg-color);
+        background-color: var(--secondary-dark-color);
+
+        svg {
+            width: 100%;
+            user-select: none;
+            fill: currentColor;
+        }
+    }
+
+    .quiz-player-board-card-name {
+        padding: 5px 10px;
+        font-size: 20px;
+        font-weight: bold;
+        user-select: none;
+    }
+
+    .quiz-player-board-card-lives {
+        padding: 5px 10px;
+        user-select: none;
+    }
+
+    &.player-selected {
+        background-color: var(--bg-color);
+        color: var(--secondary-color);
+        border-bottom: 3px solid var(--secondary-color);
+    }
+}

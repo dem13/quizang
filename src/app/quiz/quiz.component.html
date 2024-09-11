@@ -1,5 +1,5 @@
 <div class="quiz">
-    @if (!launched) {
+    @if (launched) {
         <app-quiz-launch (launched)="onLaunch($event)"></app-quiz-launch>
     } @else {
         <app-quiz-playground [gameSettings]="gameSettings"></app-quiz-playground>
