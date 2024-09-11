@@ -6,6 +6,12 @@
         {{ player?.name }}
     </div>
     <div class="quiz-player-board-card-lives">
-        ...
+        <div class="quiz-player-board-card-lives-item">
+            @for (life of getLives(); track life) {
+                <span class="material-symbols-outlined">
+                    favorite
+                </span>
+            }
+        </div>
     </div>
 </div>

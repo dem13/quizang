@@ -11,11 +11,11 @@ import { Player } from '../../player';
 })
 export class QuizPlayersBoardComponent {
   @Input() players: Player[] = [
-    new Player('Andrej', 'Andrej-0'),
-    new Player('David', 'David-1'),
-    new Player('Demian', 'Demian-2'),
-    new Player('Ryan', 'Ryan-3'),
-    new Player('Arif', 'Arif-4'),
+    new Player('Andrej', 'Andrej-0', 6),
+    new Player('David', 'David-1', 3),
+    new Player('Demian', 'Demian-2', 7),
+    new Player('Ryan', 'Ryan-3', 5),
+    new Player('Arif', 'Arif-4', 5),
   ];
   selectedPlayerIndex = 0;
 

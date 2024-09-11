@@ -10,4 +10,8 @@ import { Player } from '../../../player';
 })
 export class QuizPlayerBoardCardComponent {
   @Input({ required: true }) player?: Player
+
+  getLives() {
+    return new Array(this.player?.lives).fill(1).map((_, i) => i);
+  }
 }
