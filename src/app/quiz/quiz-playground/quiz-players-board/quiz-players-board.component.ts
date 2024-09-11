@@ -10,13 +10,8 @@ import { Player } from '../../player';
   styleUrl: './quiz-players-board.component.scss'
 })
 export class QuizPlayersBoardComponent {
-  @Input() players: Player[] = [
-    new Player('Andrej', 'Andrej-0', 6),
-    new Player('David', 'David-1', 3),
-    new Player('Demian', 'Demian-2', 7),
-    new Player('Ryan', 'Ryan-3', 5),
-    new Player('Arif', 'Arif-4', 5),
-  ];
+  @Input() players: Player[] = [];
+
   selectedPlayerIndex = 0;
 
   getPlayerBoardCardElId(playerId: string) {
@@ -28,8 +23,16 @@ export class QuizPlayersBoardComponent {
   }
 
   ngOnInit() {
+    // this.players = [
+    //   new Player('Andrej', 'Andrej-0', 6),
+    //   new Player('David', 'David-1', 3),
+    //   new Player('Demian', 'Demian-2', 7),
+    //   new Player('Ryan', 'Ryan-3', 5),
+    //   new Player('Arif', 'Arif-4', 5),
+    // ];
+
     // setInterval(() => this.selectPlayer(this.players[Math.floor(Math.random() * this.players.length)].id), 5000);
-    setInterval(() => this.selectPlayer(++this.selectedPlayerIndex), 5000);
+    setInterval(() => this.selectPlayer(++this.selectedPlayerIndex), 1000);
   }
 
   selectPlayer(index: number) {
@@ -48,6 +51,8 @@ export class QuizPlayersBoardComponent {
     });
 
     player.select();
+
+    player.lives = Math.floor(Math.random() * 6) + 1;  
 
     return player;
   }

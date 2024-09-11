@@ -1,11 +1,12 @@
 import { Component, Input } from '@angular/core';
 import { GameSettings } from '../quiz-settings';
 import { QuizPlayersBoardComponent } from './quiz-players-board/quiz-players-board.component';
+import { QuizQuestionComponent } from './quiz-question/quiz-question.component';
 
 @Component({
   selector: 'app-quiz-playground',
   standalone: true,
-  imports: [QuizPlayersBoardComponent],
+  imports: [QuizPlayersBoardComponent, QuizQuestionComponent],
   templateUrl: './quiz-playground.component.html',
   styleUrl: './quiz-playground.component.scss'
 })

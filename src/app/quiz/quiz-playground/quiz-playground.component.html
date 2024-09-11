@@ -1,3 +1,4 @@
 <div class="quiz-playground">
-    <app-quiz-players-board> </app-quiz-players-board>
+    <app-quiz-players-board [players]="gameSettings?.players || []"> </app-quiz-players-board>
+    <app-quiz-question></app-quiz-question>
 </div>

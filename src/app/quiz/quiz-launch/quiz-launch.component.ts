@@ -4,6 +4,7 @@ import { QuizPlayerSettingsComponent } from './quiz-player-settings/quiz-player-
 import { QuizLaunchButtonComponent } from './quiz-launch-button/quiz-launch-button.component';
 import { LaunchSettings } from './quiz-launch-settings/launch-settings';
 import { GameSettings } from '../quiz-settings';
+import { Player } from '../player';
 
 @Component({
   selector: 'app-quiz-launch',
@@ -44,7 +45,19 @@ export class QuizLaunchComponent {
   launchGame() {
     this.launched.emit({
       ...this.launchSettings,
-      playerNames: this.playerNames,
+      players: this.playerNames.map((name, i) => new Player(
+        this.generateNameIfEmpty(name, i),
+        this.generatePlayerId(name, i),
+        this.launchSettings.livesAmount || 3
+      )),
     });
+  }
+
+  private generatePlayerId(name: string, index: number) {
+    return `${name}-${index + 1}`;
+  }
+
+  private generateNameIfEmpty(name: string, index: number) {
+    return name.trim() || `Player #${index + 1}`;
   }
 }
