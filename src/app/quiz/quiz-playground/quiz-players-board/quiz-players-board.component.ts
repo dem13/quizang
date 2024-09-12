@@ -11,8 +11,7 @@ import { Player } from '../../player';
 })
 export class QuizPlayersBoardComponent {
   @Input() players: Player[] = [];
-
-  selectedPlayerIndex = 0;
+  @Input() selectedPlayerIndex = 0;
 
   getPlayerBoardCardElId(playerId: string) {
     return `player-board-card-${playerId}`;
@@ -22,17 +21,9 @@ export class QuizPlayersBoardComponent {
     this.selectPlayer(this.selectedPlayerIndex);
   }
 
-  ngOnInit() {
-    // this.players = [
-    //   new Player('Andrej', 'Andrej-0', 6),
-    //   new Player('David', 'David-1', 3),
-    //   new Player('Demian', 'Demian-2', 7),
-    //   new Player('Ryan', 'Ryan-3', 5),
-    //   new Player('Arif', 'Arif-4', 5),
-    // ];
-
-    // setInterval(() => this.selectPlayer(this.players[Math.floor(Math.random() * this.players.length)].id), 5000);
-    setInterval(() => this.selectPlayer(++this.selectedPlayerIndex), 1000);
+  ngOnChanges() {
+    console.log()
+    this.selectPlayer(this.selectedPlayerIndex);
   }
 
   selectPlayer(index: number) {
@@ -51,8 +42,6 @@ export class QuizPlayersBoardComponent {
     });
 
     player.select();
-
-    player.lives = Math.floor(Math.random() * 6) + 1;  
 
     return player;
   }

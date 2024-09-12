@@ -5,6 +5,7 @@ import { QuizLaunchButtonComponent } from './quiz-launch-button/quiz-launch-butt
 import { LaunchSettings } from './quiz-launch-settings/launch-settings';
 import { GameSettings } from '../quiz-settings';
 import { Player } from '../player';
+import { QuizLaunchService } from './quiz-launch.service';
 
 @Component({
   selector: 'app-quiz-launch',
@@ -26,10 +27,11 @@ export class QuizLaunchComponent {
   };
   playerNames: string[] = new Array(this.launchSettings.playersAmount).fill('');
 
+  constructor(private launchService: QuizLaunchService) {}
+
   onSettingChanged(launchSettings: LaunchSettings) {
     this.launchSettings = launchSettings;
     this.adjustPlayerNames();
-    console.log(this.launchSettings)
   }
 
   adjustPlayerNames() {
@@ -42,22 +44,9 @@ export class QuizLaunchComponent {
     }
   }
 
-  launchGame() {
-    this.launched.emit({
-      ...this.launchSettings,
-      players: this.playerNames.map((name, i) => new Player(
-        this.generateNameIfEmpty(name, i),
-        this.generatePlayerId(name, i),
-        this.launchSettings.livesAmount || 3
-      )),
-    });
-  }
-
-  private generatePlayerId(name: string, index: number) {
-    return `${name}-${index + 1}`;
-  }
-
-  private generateNameIfEmpty(name: string, index: number) {
-    return name.trim() || `Player #${index + 1}`;
+  async launchGame() {
+    const gameSettings = await this.launchService.initializeGameSettings(this.launchSettings, this.playerNames);
+    
+    this.launched.emit(gameSettings);
   }
 }

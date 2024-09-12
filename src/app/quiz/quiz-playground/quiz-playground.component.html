@@ -1,4 +1,9 @@
 <div class="quiz-playground">
-    <app-quiz-players-board [players]="gameSettings?.players || []"> </app-quiz-players-board>
-    <app-quiz-question></app-quiz-question>
+    <app-quiz-players-board [selectedPlayerIndex]="this.selectedPlayerIndex" [players]="gameSettings?.players || []"> </app-quiz-players-board>
+
+    @if(currentQuestion) {
+        <app-quiz-question (answered)="onQuestionAnswered()" [question]="currentQuestion" ></app-quiz-question>
+    }
+
+    <app-quiz-playground-controls [visible]="!!this.currentQuestion?.selectedAnswer" (nextClicked)="onNextClicked()"></app-quiz-playground-controls>
 </div>

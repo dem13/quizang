@@ -1,17 +1,14 @@
 <div class="quiz-question">
-    <div class="quiz-question-text">The word &quot;abulia&quot; means which of the following?</div>
+    <div class="quiz-question-text">{{ question?.text }}</div>
     <div class="quiz-question-answers-list">
-        <div class="quiz-question-answer">
-            The inability to stand up
-        </div>
-        <div class="quiz-question-answer">
-            The inability to make decisions
-        </div>
-        <div class="quiz-question-answer">
-            The inability to concentrate on anything
-        </div>
-        <div class="quiz-question-answer">
-            A feverish desire to rip one&#039;s clothes off
-        </div>
+        @for (answer of question?.getSchuffledAnswers(); track answer) {
+            <div 
+                [class.wrong]="answer === question?.selectedAnswer"
+                [class.correct]="question?.selectedAnswer && question?.isAnswerCorrect(answer)" 
+                (click)="onAnswerClicked(answer)()" 
+                class="quiz-question-answer">
+                {{ answer }}
+            </div>
+        }
     </div>
 </div>
