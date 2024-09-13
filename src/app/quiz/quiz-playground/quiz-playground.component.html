@@ -1,9 +1,13 @@
 <div class="quiz-playground">
-    <app-quiz-players-board [selectedPlayerIndex]="this.selectedPlayerIndex" [players]="gameSettings?.players || []"> </app-quiz-players-board>
+    <div class="quiz-playground-header">
+        {{ quizGame?.currentRound }} / {{ quizGame?.settings?.roundsAmount }}
+    </div>
 
-    @if(currentQuestion) {
-        <app-quiz-question (answered)="onQuestionAnswered()" [question]="currentQuestion" ></app-quiz-question>
+    <app-quiz-players-board [selectedPlayerIndex]="this.quizGame?.currentPlayerIndex || 0" [players]="gameSettings?.players || []"> </app-quiz-players-board>
+
+    @if(this.quizGame?.currentQuestion) {
+        <app-quiz-question (answered)="onQuestionAnswered()" [question]="this.quizGame?.currentQuestion" ></app-quiz-question>
     }
 
-    <app-quiz-playground-controls [visible]="!!this.currentQuestion?.selectedAnswer" (nextClicked)="onNextClicked()"></app-quiz-playground-controls>
+    <app-quiz-playground-controls [visible]="!!this.quizGame?.currentQuestion?.selectedAnswer" (nextClicked)="onNextClicked()"></app-quiz-playground-controls>
 </div>

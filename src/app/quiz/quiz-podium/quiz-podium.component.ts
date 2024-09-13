@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
+import { QuizResult } from '../quiz-result';
 
 @Component({
   selector: 'app-quiz-podium',
@@ -8,5 +9,5 @@ import { Component } from '@angular/core';
   styleUrl: './quiz-podium.component.scss'
 })
 export class QuizPodiumComponent {
-
+  @Input() quizResult?: QuizResult;
 }

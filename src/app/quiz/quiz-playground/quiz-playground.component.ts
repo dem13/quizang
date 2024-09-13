@@ -1,10 +1,10 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { GameSettings } from '../quiz-settings';
 import { QuizPlayersBoardComponent } from './quiz-players-board/quiz-players-board.component';
 import { QuizQuestionComponent } from './quiz-question/quiz-question.component';
 import { QuizGame } from './quiz-game';
-import { Question } from '../question';
 import { QuizPlaygroundControlsComponent } from './quiz-playground-controls/quiz-playground-controls.component';
+import { QuizResult } from '../quiz-result';
 
 
 @Component({
@@ -16,9 +16,8 @@ import { QuizPlaygroundControlsComponent } from './quiz-playground-controls/quiz
 })
 export class QuizPlaygroundComponent {
   @Input({ required: true }) gameSettings?: GameSettings;
+  @Output() gameEnded = new EventEmitter<QuizResult>();
   quizGame?: QuizGame;
-  selectedPlayerIndex: number = 0;
-  currentQuestion?: Question;
 
   ngOnInit() {
     if (!this.gameSettings) {
@@ -26,7 +25,7 @@ export class QuizPlaygroundComponent {
     }
 
     this.quizGame = new QuizGame(this.gameSettings);
-    this.currentQuestion = this.quizGame.settings.questions[0];
+    this.quizGame.onEnd(() => this.gameEnded.emit(new QuizResult(this.quizGame?.settings.players || [])))
   }
 
   onQuestionAnswered() {
@@ -34,10 +33,10 @@ export class QuizPlaygroundComponent {
       return;
     }
 
+    this.quizGame.questionAnswered();
   }
 
   onNextClicked() {
-    this.selectedPlayerIndex++;
-    this.currentQuestion = this.quizGame?.settings.questions[this.selectedPlayerIndex];
+    this.quizGame?.nextTurn();
   }
 }

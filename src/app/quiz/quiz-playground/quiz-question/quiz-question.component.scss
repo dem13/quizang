@@ -23,12 +23,12 @@
             transition-duration: 0.3s;
 
             &.wrong {
-                background-color: #C1292E!important;
+                background-color: var(--red-color)!important;
                 color: var(--bg-color);
             }
 
             &.correct {
-                background-color: #5EFC8D!important;
+                background-color: var(--green-color)!important;
                 color: var(--ft-color)!important;
             }
 

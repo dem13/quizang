@@ -39,4 +39,9 @@
         color: var(--secondary-color);
         border-bottom: 3px solid var(--secondary-color);
     }
+
+    &.dead {
+        background-color: var(--red-color)!important;
+        color: var(--bg-color)!important;
+    }
 }

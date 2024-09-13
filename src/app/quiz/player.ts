@@ -4,6 +4,7 @@ export class Player {
     id: string;
     isSelected: boolean = false;
     lives: number;
+    points: number = 0;
 
     constructor(name: string, id: string, lives: number) {
         this.name = name;
@@ -17,5 +18,9 @@ export class Player {
 
     unselect() {
         this.isSelected = false;
+    }
+
+    isAlive() {
+        return !!this.lives;
     }
 }
