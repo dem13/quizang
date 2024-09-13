@@ -401,7 +401,7 @@ export class QuizLaunchService {
   private async generateQuestions(roundsAmount: number, playersAmount: number): Promise<Question[]> {
     const questionsAmount = roundsAmount * playersAmount;
 
-    const response = exampleResponse;
+    const response = await firstValueFrom(this.http.get<OpentdbQuestionsResponse>(`https://opentdb.com/api.php?amount=${questionsAmount}&type=multiple`));
 
     if (response.response_code !== 0) {
       throw new Error('Failed to fetch questions. Response code: ' + response.response_code);

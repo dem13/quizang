@@ -18,11 +18,11 @@ export class QuizPlayersBoardComponent {
   }
 
   ngAfterContentInit() {
-    this.selectPlayer(this.selectedPlayerIndex);
+    setTimeout(() => 
+      this.selectPlayer(this.selectedPlayerIndex));
   }
 
   ngOnChanges() {
-    console.log()
     this.selectPlayer(this.selectedPlayerIndex);
   }
 

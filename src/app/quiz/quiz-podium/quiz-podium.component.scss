@@ -1,0 +1,76 @@
+.quiz-podium {
+    .quiz-podium-header {
+        grid-area: header;
+        font-size: 32px;
+        font-weight: bold;
+        text-align: center;
+    }
+
+    .quiz-podium-player-list {
+        .quiz-podium-player-list-item {
+            display: flex;
+            margin-top: 20px;
+            padding: 10px;
+            background-color: var(--bg-color);
+            font-size: 18px;
+            font-weight: bold;
+            border-radius: 5px;
+            border-bottom: 3px solid var(--secondary-light-color);
+            user-select: none;
+            transition-property: background-color, color, border-color;
+            transition-duration: 0.3s;
+
+            .quiz-podium-player-list-item-name {
+                flex: 1;
+            }
+
+            .quiz-podium-player-list-item-points {
+                text-align: right;
+            }
+
+            &:first-child {
+                background-color: #FFBE0B!important;
+                font-size: 22px;
+            }
+
+            &:nth-child(2) {
+                background-color: #F3F9D2!important;
+                font-size: 20px;
+            }
+
+            &:nth-child(3) {
+                background-color: #A9927D!important;
+                font-size: 18px;
+            }
+        }
+    }
+
+    .quiz-podium-restart-button {
+        text-align: center;
+        margin-top: 20px;
+
+        button {
+            font-size: 32px;
+            background-color: var(--secondary-light-color);
+            outline: none !important;
+            padding: 5px 25px;
+            border: none;
+            border-bottom: 5px solid var(--secondary-color);
+            border-radius: 10px;
+            cursor: pointer;
+            box-shadow: 1px 1px 3px 1px rgba($color: #000000, $alpha: 0.2);
+            transition: background-color 0.25s, color 0.25s, border-color 0.25s;
+
+            &:hover {
+                background-color: var(--secondary-color);
+                color: var(--ft-light-color);
+                border-color: var(--secondary-dark-color);
+            }
+
+            &.invisible {
+                visibility: hidden;
+            }
+        }
+    }
+
+}

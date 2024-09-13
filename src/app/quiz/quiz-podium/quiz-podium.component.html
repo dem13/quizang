@@ -1,1 +1,22 @@
-<p>quiz-podium works!</p>
+<div class="quiz-podium">
+    <div class="quiz-podium-header">
+        Podium
+    </div>
+    <div class="quiz-podium-player-list">
+        @for (player of quizResult?.getPlayersRating(); track player.id) {
+            <div class="quiz-podium-player-list-item">
+                <div class="quiz-podium-player-list-item-name">
+                    {{ player.name }}
+                </div>
+                
+                <div class="quiz-podium-player-list-item-points">
+                    {{ player.points }}
+                </div>
+            </div>
+        }
+    </div>
+
+    <div class="quiz-podium-restart-button">
+        <button (click)="onRestartClicked()">Restart</button>
+    </div>
+</div>

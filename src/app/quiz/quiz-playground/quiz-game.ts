@@ -16,7 +16,6 @@ export class QuizGame {
     nextTurn() {
         if (this.currentPlayerIndex >= (this.settings.players.length - 1)) {
             if (this.currentRound === this.settings.roundsAmount) {
-                alert(1);
                 this.ended.emit();
                 return;
             }
@@ -33,7 +32,7 @@ export class QuizGame {
         }
 
 
-        const currentQuestionIndex = this.settings.players.length * this.currentRound + this.currentPlayerIndex;
+        const currentQuestionIndex = this.settings.players.length * (this.currentRound - 1) + this.currentPlayerIndex;
 
         this.currentQuestion = this.settings.questions[currentQuestionIndex];
 
@@ -43,6 +42,8 @@ export class QuizGame {
     questionAnswered() {
         if (!this.currentQuestion.isCorrectlyAnswered()) {
             this.getCurrentPlayer().lives--;
+        } else {
+            this.getCurrentPlayer().points++;
         }
     }
 

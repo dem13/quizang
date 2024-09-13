@@ -10,4 +10,8 @@ import { QuizResult } from '../quiz-result';
 })
 export class QuizPodiumComponent {
   @Input() quizResult?: QuizResult;
+  
+  onRestartClicked() {
+    window.location.reload();
+  }
 }
