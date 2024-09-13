@@ -7,15 +7,17 @@ export class QuizGame {
     currentPlayerIndex: number = 0;
     currentQuestion: Question;
     currentRound: number = 1;
+    playersLeft: number;
     ended = new EventEmitter();
 
     constructor(public settings: GameSettings) {
         this.currentQuestion = settings.questions[0];
+        this.playersLeft = settings.players.length;
     }
 
     nextTurn() {
         if (this.currentPlayerIndex >= (this.settings.players.length - 1)) {
-            if (this.currentRound === this.settings.roundsAmount) {
+            if (this.currentRound === this.settings.roundsAmount || this.playersLeft < 2) {
                 this.ended.emit();
                 return;
             }
@@ -31,17 +33,17 @@ export class QuizGame {
             return;
         }
 
-
         const currentQuestionIndex = this.settings.players.length * (this.currentRound - 1) + this.currentPlayerIndex;
-
         this.currentQuestion = this.settings.questions[currentQuestionIndex];
-
-        console.log(this);
     }
 
     questionAnswered() {
         if (!this.currentQuestion.isCorrectlyAnswered()) {
             this.getCurrentPlayer().lives--;
+
+            if (!this.getCurrentPlayer().isAlive()) {
+                this.playersLeft--;
+            }
         } else {
             this.getCurrentPlayer().points++;
         }
