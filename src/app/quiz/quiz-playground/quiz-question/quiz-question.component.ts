@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
-import { Question } from '../../question';
+import { QuizQuestion } from '../../../../domain/quiz-question';
 
 @Component({
   selector: 'app-quiz-question',
@@ -9,17 +9,17 @@ import { Question } from '../../question';
   styleUrl: './quiz-question.component.scss'
 })
 export class QuizQuestionComponent {
-  @Input() question?: Question
+  @Input() question: QuizQuestion
   @Output() answered = new EventEmitter();
 
   onAnswerClicked(answer: string) {
     return () => {
-      if (this.question?.selectedAnswer) {
+      if (this.question.selectedAnswer) {
         return;
       }
 
-      this.question?.answer(answer);
+      this.question.answer(answer);
       this.answered.emit();
-    } 
+    }
   }
 }

@@ -1,10 +1,13 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
-import { GameSettings } from '../quiz-settings';
 import { QuizPlayersBoardComponent } from './quiz-players-board/quiz-players-board.component';
 import { QuizQuestionComponent } from './quiz-question/quiz-question.component';
-import { QuizGame } from './quiz-game';
 import { QuizPlaygroundControlsComponent } from './quiz-playground-controls/quiz-playground-controls.component';
 import { QuizResult } from '../quiz-result';
+import { QuizSettings } from '../../../domain/quiz-settings';
+import { QuizGame } from '../../../domain/quiz-game';
+import { HttpClient } from '@angular/common/http';
+import { OpentdbQuestionRepository } from './opendbt-question-repository';
+import { OpentdbStaticQuestionRepository } from './opendbt-static-question-repository';
 
 
 @Component({
@@ -15,17 +18,16 @@ import { QuizResult } from '../quiz-result';
   styleUrl: './quiz-playground.component.scss'
 })
 export class QuizPlaygroundComponent {
-  @Input({ required: true }) gameSettings?: GameSettings;
+  @Input({ required: true }) quizSettings: QuizSettings;
   @Output() gameEnded = new EventEmitter<QuizResult>();
-  quizGame?: QuizGame;
+  quizGame: QuizGame;
 
-  ngOnInit() {
-    if (!this.gameSettings) {
-      return;
-    }
+  constructor(private http: HttpClient) { }
 
-    this.quizGame = new QuizGame(this.gameSettings);
-    this.quizGame.onEnd(() => this.gameEnded.emit(new QuizResult(this.quizGame?.settings.players || [])))
+  async ngOnInit() {
+    this.quizGame = new QuizGame(this.quizSettings, new OpentdbStaticQuestionRepository(this.http));
+    this.quizGame.onEnd(() => this.gameEnded.emit(new QuizResult(this.quizGame.getPlayers() || [])));
+    await this.quizGame.init();
   }
 
   onQuestionAnswered() {
@@ -37,6 +39,6 @@ export class QuizPlaygroundComponent {
   }
 
   onNextClicked() {
-    this.quizGame?.nextTurn();
+    this.quizGame.nextTurn();
   }
 }

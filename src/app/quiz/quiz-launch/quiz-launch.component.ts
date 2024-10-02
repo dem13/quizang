@@ -1,11 +1,10 @@
-import { Component, ComponentFactoryResolver, EventEmitter, Output } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 import { QuizLaunchSettingsComponent } from './quiz-launch-settings/quiz-launch-settings.component';
 import { QuizPlayerSettingsComponent } from './quiz-player-settings/quiz-player-settings.component';
 import { QuizLaunchButtonComponent } from './quiz-launch-button/quiz-launch-button.component';
 import { LaunchSettings } from './quiz-launch-settings/launch-settings';
-import { GameSettings } from '../quiz-settings';
-import { Player } from '../player';
 import { QuizLaunchService } from './quiz-launch.service';
+import { QuizSettings } from '../../../domain/quiz-settings';
 
 @Component({
   selector: 'app-quiz-launch',
@@ -19,13 +18,9 @@ import { QuizLaunchService } from './quiz-launch.service';
   styleUrl: './quiz-launch.component.scss'
 })
 export class QuizLaunchComponent {
-  @Output() launched = new EventEmitter<GameSettings>();
-  launchSettings: LaunchSettings = {
-    playersAmount: 3,
-    livesAmount: 5,
-    roundsAmount: 10,
-  };
-  playerNames: string[] = new Array(this.launchSettings.playersAmount).fill('');
+  @Output() launched = new EventEmitter<QuizSettings>();
+  launchSettings: LaunchSettings;
+  playerNames: string[] = [];
 
   constructor(private launchService: QuizLaunchService) {}
 
@@ -35,7 +30,7 @@ export class QuizLaunchComponent {
   }
 
   adjustPlayerNames() {
-    const playersAmountDifference = (this.launchSettings.playersAmount || 0) - this.playerNames.length;
+    const playersAmountDifference = this.launchSettings.playersAmount - this.playerNames.length;
 
     if (playersAmountDifference > 0) {
       this.playerNames.push(...new Array(playersAmountDifference).fill(''));
@@ -45,8 +40,8 @@ export class QuizLaunchComponent {
   }
 
   async launchGame() {
-    const gameSettings = await this.launchService.initializeGameSettings(this.launchSettings, this.playerNames);
+    const quizSettings = await this.launchService.initializeGameSettings(this.launchSettings, this.playerNames);
     
-    this.launched.emit(gameSettings);
+    this.launched.emit(quizSettings);
   }
 }

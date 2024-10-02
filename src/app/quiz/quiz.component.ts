@@ -1,9 +1,9 @@
 import { Component } from '@angular/core';
 import { QuizLaunchComponent } from './quiz-launch/quiz-launch.component';
-import { GameSettings } from './quiz-settings';
 import { QuizPlaygroundComponent } from './quiz-playground/quiz-playground.component';
 import { QuizResult } from './quiz-result';
 import { QuizPodiumComponent } from './quiz-podium/quiz-podium.component';
+import { QuizSettings } from '../../domain/quiz-settings';
 
 @Component({
   selector: 'app-quiz',
@@ -13,11 +13,11 @@ import { QuizPodiumComponent } from './quiz-podium/quiz-podium.component';
   styleUrl: './quiz.component.scss'
 })
 export class QuizComponent {
-  gameSettings?: GameSettings;
+  quizSettings?: QuizSettings;
   quizResult?: QuizResult;
 
-  onLaunch(settings: GameSettings) {
-    this.gameSettings = settings;
+  onLaunch(settings: QuizSettings) {
+    this.quizSettings = settings;
   }
 
   onGameEnded(result: QuizResult) {

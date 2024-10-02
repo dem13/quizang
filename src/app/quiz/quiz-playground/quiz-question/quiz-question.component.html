@@ -1,10 +1,10 @@
 <div class="quiz-question">
-    <div class="quiz-question-text">{{ question?.text }}</div>
+    <div class="quiz-question-text">{{ question.text }}</div>
     <div class="quiz-question-answers-list">
-        @for (answer of question?.getSchuffledAnswers(); track answer) {
+        @for (answer of question.getSchuffledAnswers(); track answer) {
             <div 
-                [class.wrong]="answer === question?.selectedAnswer"
-                [class.correct]="question?.selectedAnswer && question?.isAnswerCorrect(answer)" 
+                [class.wrong]="answer === question.selectedAnswer"
+                [class.correct]="question.selectedAnswer && question.isAnswerCorrect(answer)" 
                 (click)="onAnswerClicked(answer)()" 
                 class="quiz-question-answer">
                 {{ answer }}

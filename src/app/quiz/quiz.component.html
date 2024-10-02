@@ -1,8 +1,8 @@
 <div class="quiz">
-    @if (!gameSettings) {
+    @if (!quizSettings) {
         <app-quiz-launch (launched)="onLaunch($event)"></app-quiz-launch>
     } @else if(!quizResult) {
-        <app-quiz-playground (gameEnded)="onGameEnded($event)" [gameSettings]="gameSettings"></app-quiz-playground>
+        <app-quiz-playground (gameEnded)="onGameEnded($event)" [quizSettings]="quizSettings"></app-quiz-playground>
     } @else {
         <app-quiz-podium [quizResult]="quizResult"></app-quiz-podium>
     }

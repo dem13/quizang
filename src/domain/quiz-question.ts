@@ -1,12 +1,12 @@
 
-export class Question {
+export class QuizQuestion {
     private schuffledAnswers?: string[];
     public selectedAnswer: string = '';
 
     constructor(
-        public text: string,
-        public correctAnswer: string, 
-        public incorrectAnswers: string[]
+        public readonly text: string,
+        public readonly correctAnswer: string, 
+        public readonly incorrectAnswers: string[]
     ) {
 
     }

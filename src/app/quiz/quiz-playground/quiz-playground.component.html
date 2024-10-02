@@ -1,13 +1,20 @@
 <div class="quiz-playground">
-    <div class="quiz-playground-header">
-        {{ quizGame?.currentRound }} / {{ quizGame?.settings?.roundsAmount }}
-    </div>
-
-    <app-quiz-players-board [selectedPlayerIndex]="this.quizGame?.currentPlayerIndex || 0" [players]="gameSettings?.players || []"> </app-quiz-players-board>
-
-    @if(this.quizGame?.currentQuestion) {
-        <app-quiz-question (answered)="onQuestionAnswered()" [question]="this.quizGame?.currentQuestion" ></app-quiz-question>
+    @if(quizGame.isInitialized()) {
+        <div class="quiz-playground-header">
+            {{ quizGame.getCurrentRoundNumber() }} / {{ quizGame.getSettings().roundsAmount }}
+        </div>
+    
+        <app-quiz-players-board [selectedPlayerIndex]="this.quizGame.getCurrentTurn().index" [players]="quizGame.getPlayers()"> </app-quiz-players-board>
+    
+        <app-quiz-question (answered)="onQuestionAnswered()" [question]="this.quizGame.getCurrentTurn().question" ></app-quiz-question>
+    
+        <app-quiz-playground-controls [visible]="!!this.quizGame.getCurrentTurn().question" (nextClicked)="onNextClicked()"></app-quiz-playground-controls>    
+    } @else {
+        <div class="quiz-playground-loader">
+            <div>
+                <div class="loader"></div>
+            </div>
+        </div>
     }
 
-    <app-quiz-playground-controls [visible]="!!this.quizGame?.currentQuestion?.selectedAnswer" (nextClicked)="onNextClicked()"></app-quiz-playground-controls>
 </div>
