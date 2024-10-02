@@ -28,7 +28,7 @@ export class QuizPlayersBoardComponent {
   }
 
   selectPlayer(index: number) {
-    const selectedPlayer = this.players[ index % this.players.length];
+    const selectedPlayer = this.players[index % this.players.length];
 
     if (!selectedPlayer) {
       return;

@@ -4,6 +4,9 @@ import { QuizPlaygroundComponent } from './quiz-playground/quiz-playground.compo
 import { QuizResult } from './quiz-result';
 import { QuizPodiumComponent } from './quiz-podium/quiz-podium.component';
 import { QuizSettings } from '../../domain/quiz-settings';
+import { QuizGame } from '../../domain/quiz-game';
+import { OpentdbStaticQuestionRepository } from './quiz-playground/opendbt-static-question-repository';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-quiz',
@@ -13,12 +16,18 @@ import { QuizSettings } from '../../domain/quiz-settings';
   styleUrl: './quiz.component.scss',
 })
 export class QuizComponent {
-  quizSettings?: QuizSettings;
+  quizGame?: QuizGame;
 
   quizResult?: QuizResult;
 
-  onLaunch(settings: QuizSettings) {
-    this.quizSettings = settings;
+  constructor(private http: HttpClient) { }
+
+  async onLaunch(settings: QuizSettings) {
+    const quizGame = new QuizGame(settings, new OpentdbStaticQuestionRepository(this.http));
+    quizGame.onEnd(() => this.quizResult = new QuizResult(quizGame.getPlayers()));
+    await quizGame.init();
+
+    this.quizGame = quizGame;
   }
 
   onGameEnded(result: QuizResult) {

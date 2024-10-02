@@ -15,7 +15,7 @@ export class QuizQuestionComponent {
 
   onAnswerClicked(answer: string) {
     return () => {
-      if (this.question.selectedAnswer) {
+      if (this.question.isAnswered()) {
         return;
       }
 

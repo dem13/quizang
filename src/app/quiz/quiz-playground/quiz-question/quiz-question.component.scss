@@ -32,6 +32,11 @@
                 color: var(--ft-color)!important;
             }
 
+            &.skipped {
+                background-color: var(--yellow-color)!important;
+                color: var(--ft-color)!important;
+            }
+
             &:hover {
                 background-color: var(--secondary-color);
                 color: var(--bg-color);

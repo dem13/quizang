@@ -4,7 +4,7 @@ import { QuizQuestionRepository } from './quiz-quesiton-repository';
 import { QuizSettings } from './quiz-settings';
 import { QuizTurn } from './quiz-turn';
 
-const FIRST_ROUND_INDEX = 0;
+const FIRST_TURN_INDEX = 0;
 
 export class QuizGame {
   private players: QuizPlayer[];
@@ -21,25 +21,6 @@ export class QuizGame {
     this.initPlayers();
   }
 
-  private initPlayers() {
-    this.players = this.settings.playersSettings.map(playerSetting => new QuizPlayer(
-      playerSetting.name,
-      playerSetting.id,
-      this.settings.livesAmount,
-    ));
-    this.playersLeft = this.players.length;
-  }
-
-  private buildRoundByIndex(index: number) {
-    return new QuizTurn(index, this.questions[index], this.players[index % this.players.length]);
-  }
-
-  async init() {
-    const questionCount = this.players.length * this.settings.roundsAmount;
-    this.questions = await this.questionRepository.getMany(questionCount);
-    this.currentTurn = this.buildRoundByIndex(FIRST_ROUND_INDEX);
-  }
-
   nextTurn() {
     const nextTurnIndex = this.currentTurn.index + 1;
 
@@ -48,7 +29,7 @@ export class QuizGame {
       return;
     }
 
-    const nextTurn = this.buildRoundByIndex(nextTurnIndex);
+    const nextTurn = this.buildTurnByIndex(nextTurnIndex);
     this.currentTurn = nextTurn;
 
     if (!nextTurn.player.isAlive()) {
@@ -57,7 +38,7 @@ export class QuizGame {
     }
   }
 
-  questionAnswered() {
+  handleQuestion() {
     if (!this.currentTurn.question.isCorrectlyAnswered()) {
       this.getCurrentPlayer().loseLife();
 
@@ -85,10 +66,7 @@ export class QuizGame {
     return this.settings;
   }
 
-  private updatesCount = 0;
-
   getCurrentTurn() {
-    console.log(++this.updatesCount);
     return this.currentTurn;
   }
 
@@ -98,5 +76,24 @@ export class QuizGame {
 
   getCurrentRoundNumber(index?: number) {
     return Math.floor((index || this.currentTurn.index) / this.settings.playersSettings.length) + 1;
+  }
+
+  private initPlayers() {
+    this.players = this.settings.playersSettings.map(playerSetting => new QuizPlayer(
+      playerSetting.name,
+      playerSetting.id,
+      this.settings.livesAmount,
+    ));
+    this.playersLeft = this.players.length;
+  }
+
+  private buildTurnByIndex(index: number) {
+    return new QuizTurn(index, this.questions[index], this.players[index % this.players.length]);
+  }
+
+  async init() {
+    const questionCount = this.players.length * this.settings.roundsAmount;
+    this.questions = await this.questionRepository.getMany(questionCount);
+    this.currentTurn = this.buildTurnByIndex(FIRST_TURN_INDEX);
   }
 }

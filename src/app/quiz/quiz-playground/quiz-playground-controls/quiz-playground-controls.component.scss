@@ -12,6 +12,7 @@
         cursor: pointer;
         box-shadow: 1px 1px 3px 1px rgba($color: #000000, $alpha: 0.2);
         transition: background-color 0.25s, color 0.25s, border-color 0.25s;
+        user-select: none;
     
         &:hover {
             background-color: var(--secondary-color);

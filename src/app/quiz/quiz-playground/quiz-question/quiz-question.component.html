@@ -4,7 +4,8 @@
         @for (answer of question.getSchuffledAnswers(); track answer) {
             <div 
                 [class.wrong]="answer === question.selectedAnswer"
-                [class.correct]="question.selectedAnswer && question.isAnswerCorrect(answer)" 
+                [class.correct]="question.isAnswered() && question.isAnswerCorrect(answer)" 
+                [class.skipped]="question.wasSkipped() && question.isAnswerCorrect(answer)" 
                 (click)="onAnswerClicked(answer)()" 
                 class="quiz-question-answer">
                 {{ answer }}

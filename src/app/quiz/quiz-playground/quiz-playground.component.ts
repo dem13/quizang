@@ -1,45 +1,46 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, EventEmitter, Input, Output, ViewChild } from '@angular/core';
 import { QuizPlayersBoardComponent } from './quiz-players-board/quiz-players-board.component';
 import { QuizQuestionComponent } from './quiz-question/quiz-question.component';
 import { QuizPlaygroundControlsComponent } from './quiz-playground-controls/quiz-playground-controls.component';
 import { QuizResult } from '../quiz-result';
-import { QuizSettings } from '../../../domain/quiz-settings';
 import { QuizGame } from '../../../domain/quiz-game';
-import { HttpClient } from '@angular/common/http';
-import { OpentdbStaticQuestionRepository } from './opendbt-static-question-repository';
+import { QuizTimerComponent } from './quiz-timer/quiz-timer.component';
 
+const ANSWER_TIME = 2;
 
 @Component({
   selector: 'app-quiz-playground',
   standalone: true,
-  imports: [QuizPlayersBoardComponent, QuizQuestionComponent, QuizPlaygroundControlsComponent],
+  imports: [QuizPlayersBoardComponent, QuizQuestionComponent, QuizPlaygroundControlsComponent, QuizTimerComponent],
   templateUrl: './quiz-playground.component.html',
   styleUrl: './quiz-playground.component.scss',
 })
 export class QuizPlaygroundComponent {
-  @Input({ required: true }) quizSettings: QuizSettings;
+  @Input({ required: true }) quizGame: QuizGame;
 
   @Output() gameEnded = new EventEmitter<QuizResult>();
 
-  quizGame: QuizGame;
+  @ViewChild(QuizTimerComponent, { static: false }) timerComponent: QuizTimerComponent;
 
-  constructor(private http: HttpClient) { }
-
-  async ngOnInit() {
-    this.quizGame = new QuizGame(this.quizSettings, new OpentdbStaticQuestionRepository(this.http));
-    this.quizGame.onEnd(() => this.gameEnded.emit(new QuizResult(this.quizGame.getPlayers() || [])));
-    await this.quizGame.init();
+  ngAfterViewInit() {
+    this.timerComponent.startTimer(ANSWER_TIME);
   }
 
   onQuestionAnswered() {
-    if (!this.quizGame) {
-      return;
-    }
+    this.quizGame.handleQuestion();
+    this.timerComponent.freezeTimer();
+  }
 
-    this.quizGame.questionAnswered();
+  onTimeEnded() {
+    const currentQuestion = this.quizGame.getCurrentTurn().question;
+    if (!currentQuestion.isAnswered()) {
+      this.quizGame.getCurrentTurn().question.skip();
+      this.quizGame.handleQuestion();
+    }
   }
 
   onNextClicked() {
     this.quizGame.nextTurn();
+    this.timerComponent.startTimer(ANSWER_TIME);
   }
 }

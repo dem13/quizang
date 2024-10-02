@@ -1,6 +1,8 @@
 
 export class QuizQuestion {
   private schuffledAnswers?: string[];
+  
+  private isSkipped = false;
 
   public selectedAnswer = '';
 
@@ -16,14 +18,26 @@ export class QuizQuestion {
     return this.correctAnswer === answer;
   }
 
+  isAnswered() {
+    return !!this.selectedAnswer || this.isSkipped;
+  }
+
+  wasSkipped() {
+    return this.isSkipped;
+  }
+
   isCorrectlyAnswered() {
-    return this.isAnswerCorrect(this.selectedAnswer);
+    return !this.isSkipped && this.isAnswerCorrect(this.selectedAnswer);
   }
 
   answer(answer: string) {
     this.selectedAnswer = answer;
 
     return this.isAnswerCorrect(answer);
+  }
+
+  skip() {
+    this.isSkipped = true;
   }
 
   getSchuffledAnswers() {
