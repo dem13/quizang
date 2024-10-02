@@ -1,4 +1,5 @@
 import { Component, EventEmitter, Output } from '@angular/core';
+import { addZeroToDigit } from '../../../../helpers/add-zero-to-digit';
 
 @Component({
   selector: 'app-quiz-timer',
@@ -18,10 +19,8 @@ export class QuizTimerComponent {
     if (!this.timeLeft) {
       return '00:00';
     }
-
-    const addZero = (value: number) => value < 10 ? `0${value}` : value;
-    const minutes = addZero(Math.floor(this.timeLeft / 60));
-    const seconds = addZero(this.timeLeft % 60);
+    const minutes = addZeroToDigit(Math.floor(this.timeLeft / 60));
+    const seconds = addZeroToDigit(this.timeLeft % 60);
     return `${minutes}:${seconds}`;
   }
 

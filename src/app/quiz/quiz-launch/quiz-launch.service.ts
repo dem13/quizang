@@ -13,6 +13,7 @@ export class QuizLaunchService {
 
     return {
       ...launchSettings,
+      answerTime: launchSettings.answerMinutes * 60 + launchSettings.answerSeconds,
       playersSettings: playerNames.map((name, i) => new QuizPlayerSetting(
         this.generateNameIfEmpty(name, i),
         this.generatePlayerId(name, i),

@@ -19,4 +19,13 @@
         </span>
         <input type="number" (input)="onSettingInput('roundsAmount')($event)" value="{{launchSettings.roundsAmount}}">
     </div>
+
+    <div class="quiz-launch-settings-item">
+        <span class="material-symbols-outlined">
+            timer
+        </span>
+        <input type="number" (input)="onSettingInput('answerMinutes')($event)" value="{{addZeroToDigit(launchSettings.answerMinutes)}}">
+        
+        <input type="number" (input)="onSettingInput('answerSeconds')($event)" value="{{addZeroToDigit(launchSettings.answerSeconds)}}">
+    </div>
 </div>

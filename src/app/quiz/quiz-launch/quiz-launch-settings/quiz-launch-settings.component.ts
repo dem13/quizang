@@ -1,5 +1,6 @@
 import { Component, EventEmitter, Output } from '@angular/core';
 import { LaunchSettings, LaunchSettingNames } from './launch-settings';
+import { addZeroToDigit } from '../../../../helpers/add-zero-to-digit';
 
 @Component({
   selector: 'app-quiz-launch-settings',
@@ -11,10 +12,14 @@ import { LaunchSettings, LaunchSettingNames } from './launch-settings';
 export class QuizLaunchSettingsComponent {
   @Output() settingChaned = new EventEmitter<LaunchSettings>();
 
+  addZeroToDigit = addZeroToDigit;
+
   launchSettings: LaunchSettings = {
     playersAmount: 3,
     livesAmount: 5,
     roundsAmount: 10,
+    answerMinutes: 1,
+    answerSeconds: 0,
   };
 
   ngOnInit() {

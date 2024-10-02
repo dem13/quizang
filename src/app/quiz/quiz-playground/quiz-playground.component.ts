@@ -23,7 +23,7 @@ export class QuizPlaygroundComponent {
   @ViewChild(QuizTimerComponent, { static: false }) timerComponent: QuizTimerComponent;
 
   ngAfterViewInit() {
-    this.timerComponent.startTimer(ANSWER_TIME);
+    this.timerComponent.startTimer(this.quizGame.getSettings().answerTime);
   }
 
   onQuestionAnswered() {
@@ -41,6 +41,6 @@ export class QuizPlaygroundComponent {
 
   onNextClicked() {
     this.quizGame.nextTurn();
-    this.timerComponent.startTimer(ANSWER_TIME);
+    this.timerComponent.startTimer(this.quizGame.getSettings().answerTime);
   }
 }
