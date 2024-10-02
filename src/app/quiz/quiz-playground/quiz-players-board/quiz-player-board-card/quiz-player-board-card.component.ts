@@ -6,10 +6,10 @@ import { Player } from '../../../player';
   standalone: true,
   imports: [],
   templateUrl: './quiz-player-board-card.component.html',
-  styleUrl: './quiz-player-board-card.component.scss'
+  styleUrl: './quiz-player-board-card.component.scss',
 })
 export class QuizPlayerBoardCardComponent {
-  @Input({ required: true }) player?: Player
+  @Input({ required: true }) player?: Player;
 
   getLives() {
     return new Array(this.player?.lives).fill(1).map((_, i) => i);

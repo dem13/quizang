@@ -1,32 +1,36 @@
 
 export class QuizPlayer {
-    name: string;
-    id: string;
-    isSelected: boolean = false;
-    lives: number;
-    points: number = 0;
+  name: string;
 
-    constructor(name: string, id: string, lives: number) {
-        this.name = name;
-        this.id = id;
-        this.lives = lives;
-    }
+  id: string;
 
-    loseLife() {    
-        if (this.lives > 0) {
-            this.lives--;
-        }
-    }
+  isSelected = false;
 
-    select() {
-        this.isSelected = true;
-    }
+  lives: number;
 
-    unselect() {
-        this.isSelected = false;
-    }
+  points = 0;
 
-    isAlive() {
-        return !!this.lives;
+  constructor(name: string, id: string, lives: number) {
+    this.name = name;
+    this.id = id;
+    this.lives = lives;
+  }
+
+  loseLife() {    
+    if (this.lives > 0) {
+      this.lives--;
     }
+  }
+
+  select() {
+    this.isSelected = true;
+  }
+
+  unselect() {
+    this.isSelected = false;
+  }
+
+  isAlive() {
+    return !!this.lives;
+  }
 }

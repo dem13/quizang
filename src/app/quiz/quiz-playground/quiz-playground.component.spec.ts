@@ -8,7 +8,7 @@ describe('QuizPlaygroundComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [QuizPlaygroundComponent]
+      imports: [QuizPlaygroundComponent],
     })
       .compileComponents();
 

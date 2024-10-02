@@ -6,7 +6,7 @@ import { LaunchSettings, LaunchSettingNames } from './launch-settings';
   standalone: true,
   imports: [],
   templateUrl: './quiz-launch-settings.component.html',
-  styleUrl: './quiz-launch-settings.component.scss'
+  styleUrl: './quiz-launch-settings.component.scss',
 })
 export class QuizLaunchSettingsComponent {
   @Output() settingChaned = new EventEmitter<LaunchSettings>();
@@ -22,8 +22,9 @@ export class QuizLaunchSettingsComponent {
   }
 
   onSettingInput(settingName: LaunchSettingNames) {
-    return (event: any) => {
-      this.launchSettings[settingName] = +event.target.value
+    return (event: Event) => {
+      const input = event.target as HTMLInputElement;
+      this.launchSettings[settingName] = +input.value;
       this.settingChaned.emit(this.launchSettings);
     };
   }

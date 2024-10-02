@@ -8,9 +8,9 @@ describe('QuizPlayerBoardCardComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [QuizPlayerBoardCardComponent]
+      imports: [QuizPlayerBoardCardComponent],
     })
-    .compileComponents();
+      .compileComponents();
 
     fixture = TestBed.createComponent(QuizPlayerBoardCardComponent);
     component = fixture.componentInstance;

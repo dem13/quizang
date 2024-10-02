@@ -7,7 +7,7 @@ import { QuizCardComponent } from './quiz-card/quiz-card.component';
   standalone: true,
   imports: [RouterOutlet, QuizCardComponent],
   templateUrl: './app.component.html',
-  styleUrl: './app.component.scss'
+  styleUrl: './app.component.scss',
 })
 export class AppComponent {
   title = 'QuizAng';

@@ -8,7 +8,7 @@ describe('QuizLaunchButtonComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [QuizLaunchButtonComponent]
+      imports: [QuizLaunchButtonComponent],
     })
       .compileComponents();
 

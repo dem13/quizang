@@ -1,10 +1,9 @@
-import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { LaunchSettings } from './quiz-launch-settings/launch-settings';
 import { QuizPlayerSetting, QuizSettings } from '../../../domain/quiz-settings';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class QuizLaunchService {
   async initializeGameSettings(launchSettings: LaunchSettings, playerNames: string[]): Promise<QuizSettings> {
@@ -18,7 +17,7 @@ export class QuizLaunchService {
         this.generateNameIfEmpty(name, i),
         this.generatePlayerId(name, i),
       )),
-    }
+    };
   }
 
   private generatePlayerId(name: string, index: number) {

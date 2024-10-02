@@ -6,7 +6,7 @@ import { QuizComponent } from '../quiz/quiz.component';
   standalone: true,
   imports: [QuizComponent],
   templateUrl: './quiz-card.component.html',
-  styleUrl: './quiz-card.component.scss'
+  styleUrl: './quiz-card.component.scss',
 })
 export class QuizCardComponent {
 

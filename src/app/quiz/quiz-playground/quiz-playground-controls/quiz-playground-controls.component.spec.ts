@@ -8,9 +8,9 @@ describe('QuizPlaygroundControlsComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [QuizPlaygroundControlsComponent]
+      imports: [QuizPlaygroundControlsComponent],
     })
-    .compileComponents();
+      .compileComponents();
 
     fixture = TestBed.createComponent(QuizPlaygroundControlsComponent);
     component = fixture.componentInstance;

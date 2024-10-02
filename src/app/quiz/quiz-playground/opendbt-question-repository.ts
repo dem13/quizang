@@ -1,8 +1,8 @@
 
 import { firstValueFrom } from 'rxjs';
 import { OpentdbQuestionsResponse } from './opentdb-questions-response';
-import { QuizQuestion } from "../../../domain/quiz-question";
-import { QuizQuestionRepository } from "../../../domain/quiz-quesiton-repository";
+import { QuizQuestion } from '../../../domain/quiz-question';
+import { QuizQuestionRepository } from '../../../domain/quiz-quesiton-repository';
 import { HttpClient } from '@angular/common/http';
 
 export class OpentdbQuestionRepository implements QuizQuestionRepository {

@@ -6,7 +6,6 @@ import { QuizResult } from '../quiz-result';
 import { QuizSettings } from '../../../domain/quiz-settings';
 import { QuizGame } from '../../../domain/quiz-game';
 import { HttpClient } from '@angular/common/http';
-import { OpentdbQuestionRepository } from './opendbt-question-repository';
 import { OpentdbStaticQuestionRepository } from './opendbt-static-question-repository';
 
 
@@ -15,11 +14,13 @@ import { OpentdbStaticQuestionRepository } from './opendbt-static-question-repos
   standalone: true,
   imports: [QuizPlayersBoardComponent, QuizQuestionComponent, QuizPlaygroundControlsComponent],
   templateUrl: './quiz-playground.component.html',
-  styleUrl: './quiz-playground.component.scss'
+  styleUrl: './quiz-playground.component.scss',
 })
 export class QuizPlaygroundComponent {
   @Input({ required: true }) quizSettings: QuizSettings;
+
   @Output() gameEnded = new EventEmitter<QuizResult>();
+
   quizGame: QuizGame;
 
   constructor(private http: HttpClient) { }

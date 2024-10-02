@@ -10,10 +10,11 @@ import { QuizSettings } from '../../domain/quiz-settings';
   standalone: true,
   imports: [QuizLaunchComponent, QuizPlaygroundComponent, QuizPodiumComponent],
   templateUrl: './quiz.component.html',
-  styleUrl: './quiz.component.scss'
+  styleUrl: './quiz.component.scss',
 })
 export class QuizComponent {
   quizSettings?: QuizSettings;
+
   quizResult?: QuizResult;
 
   onLaunch(settings: QuizSettings) {

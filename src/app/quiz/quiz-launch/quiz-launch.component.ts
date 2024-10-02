@@ -12,14 +12,16 @@ import { QuizSettings } from '../../../domain/quiz-settings';
   imports: [
     QuizLaunchSettingsComponent,
     QuizPlayerSettingsComponent,
-    QuizLaunchButtonComponent
+    QuizLaunchButtonComponent,
   ],
   templateUrl: './quiz-launch.component.html',
-  styleUrl: './quiz-launch.component.scss'
+  styleUrl: './quiz-launch.component.scss',
 })
 export class QuizLaunchComponent {
   @Output() launched = new EventEmitter<QuizSettings>();
+
   launchSettings: LaunchSettings;
+
   playerNames: string[] = [];
 
   constructor(private launchService: QuizLaunchService) {}
@@ -35,7 +37,7 @@ export class QuizLaunchComponent {
     if (playersAmountDifference > 0) {
       this.playerNames.push(...new Array(playersAmountDifference).fill(''));
     } else {
-      this.playerNames.splice(this.playerNames.length + playersAmountDifference, Math.abs(playersAmountDifference))
+      this.playerNames.splice(this.playerNames.length + playersAmountDifference, Math.abs(playersAmountDifference));
     }
   }
 

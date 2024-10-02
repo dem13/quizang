@@ -5,9 +5,10 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
   standalone: true,
   imports: [],
   templateUrl: './quiz-playground-controls.component.html',
-  styleUrl: './quiz-playground-controls.component.scss'
+  styleUrl: './quiz-playground-controls.component.scss',
 })
 export class QuizPlaygroundControlsComponent {
   @Output() nextClicked = new EventEmitter();
+
   @Input() visible = false;
 }

@@ -6,7 +6,7 @@ import { QuizResult } from '../quiz-result';
   standalone: true,
   imports: [],
   templateUrl: './quiz-podium.component.html',
-  styleUrl: './quiz-podium.component.scss'
+  styleUrl: './quiz-podium.component.scss',
 })
 export class QuizPodiumComponent {
   @Input() quizResult?: QuizResult;

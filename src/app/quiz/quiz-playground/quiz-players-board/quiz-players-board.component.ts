@@ -1,16 +1,17 @@
-import { Component, Inject, Input } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { QuizPlayerBoardCardComponent } from './quiz-player-board-card/quiz-player-board-card.component';
 import { Player } from '../../player';
 
 @Component({
   selector: 'app-quiz-players-board',
   standalone: true,
-  imports: [QuizPlayerBoardCardComponent],
+  imports: [QuizPlayerBoardCardComponent ],
   templateUrl: './quiz-players-board.component.html',
-  styleUrl: './quiz-players-board.component.scss'
+  styleUrl: './quiz-players-board.component.scss',
 })
 export class QuizPlayersBoardComponent {
   @Input() players: Player[] = [];
+
   @Input() selectedPlayerIndex = 0;
 
   getPlayerBoardCardElId(playerId: string) {
@@ -18,7 +19,7 @@ export class QuizPlayersBoardComponent {
   }
 
   ngAfterContentInit() {
-    setTimeout(() => 
+    setTimeout( () => 
       this.selectPlayer(this.selectedPlayerIndex));
   }
 
@@ -27,22 +28,22 @@ export class QuizPlayersBoardComponent {
   }
 
   selectPlayer(index: number) {
-    const player = this.players[index % this.players.length];
+    const selectedPlayer = this.players[ index % this.players.length];
 
-    if (!player) {
+    if (!selectedPlayer) {
       return;
     }
 
     this.selectedPlayerIndex = index;
     this.players.forEach(player => player.unselect());
-    document.querySelector(`#${this.getPlayerBoardCardElId(player.id)}`)?.scrollIntoView({
+    document.querySelector(`#${this.getPlayerBoardCardElId(selectedPlayer.id)}`)?.scrollIntoView({
       behavior: 'smooth',
       block: 'center',
-      inline: 'center'
+      inline: 'center',
     });
 
-    player.select();
+    selectedPlayer.select();
 
-    return player;
+    return selectedPlayer;
   }
 }
