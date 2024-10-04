@@ -30,3 +30,13 @@
         text-align: center;
     }
 }
+
+@media only screen and (max-device-width: 720px){
+    .quiz-launch {
+        grid-template-areas:
+        "header header header header"
+        "settings-left settings-left settings-left settings-left"
+        "settings-right settings-right settings-right settings-right"
+        "controls controls controls controls";
+    }
+}
