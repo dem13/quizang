@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { QuizResult } from '../quiz-result';
 
 @Component({
@@ -9,9 +9,15 @@ import { QuizResult } from '../quiz-result';
   styleUrl: './quiz-podium.component.scss',
 })
 export class QuizPodiumComponent {
+  @Output() restarted = new EventEmitter();
+
   @Input() quizResult?: QuizResult;
   
   onRestartClicked() {
+    this.restarted.emit();
+  }
+
+  onHomeClicked() {
     window.location.reload();
   }
 }

@@ -20,9 +20,12 @@ export class QuizComponent {
 
   quizResult?: QuizResult;
 
+  quizSettings?: QuizSettings;
+
   constructor(private http: HttpClient) { }
 
   async onLaunch(settings: QuizSettings) {
+    this.quizSettings = settings;
     const quizGame = new QuizGame(settings, new OpentdbQuestionRepository(this.http));
     quizGame.onEnd(() => this.quizResult = new QuizResult(quizGame.getPlayers()));
     await quizGame.init();
@@ -32,5 +35,12 @@ export class QuizComponent {
 
   onGameEnded(result: QuizResult) {
     this.quizResult = result;
+  }
+
+  async onRestart() {
+    if (this.quizSettings) {
+      await this.onLaunch(this.quizSettings);
+      this.quizResult = undefined;
+    }
   }
 }

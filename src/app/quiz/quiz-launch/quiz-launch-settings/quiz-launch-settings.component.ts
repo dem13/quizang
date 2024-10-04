@@ -15,7 +15,7 @@ export class QuizLaunchSettingsComponent {
   addZeroToDigit = addZeroToDigit;
 
   launchSettings: LaunchSettings = {
-    playersAmount: 3,
+    playersAmount: 5,
     livesAmount: 5,
     roundsAmount: 10,
     answerMinutes: 1,

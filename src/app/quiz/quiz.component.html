@@ -4,6 +4,6 @@
     } @else if(!quizResult) {
         <app-quiz-playground [quizGame]="quizGame"></app-quiz-playground>
     } @else {
-        <app-quiz-podium [quizResult]="quizResult"></app-quiz-podium>
+        <app-quiz-podium (restarted)="onRestart()" [quizResult]="quizResult"></app-quiz-podium>
     }
 </div>
