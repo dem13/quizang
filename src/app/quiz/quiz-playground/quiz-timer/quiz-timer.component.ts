@@ -15,6 +15,11 @@ export class QuizTimerComponent {
 
   timerInterval?: ReturnType<typeof setInterval>;
 
+  initialized = false;
+
+  readonly timerThreshold = 10;
+
+
   getPrettyTime() {
     if (!this.timeLeft) {
       return '00:00';
@@ -31,20 +36,29 @@ export class QuizTimerComponent {
     }
   }
 
+  private onTick() {
+    if (--this.timeLeft < 1) {
+      clearInterval(this.timerInterval);
+      this.timeEnded.emit();
+      return;
+    }
+  }
+
   public startTimer(seconds: number) {
+    this.initialized = true;
+
     setTimeout(() => {
       this.clearCurrentInterval();
       this.timeLeft = seconds;
-      this.timerInterval = setInterval(() => {
-        if (--this.timeLeft < 1) {
-          clearInterval(this.timerInterval);
-          this.timeEnded.emit();
-        }
-      }, 1000);
+      this.timerInterval = setInterval(this.onTick.bind(this), 1000);
     }, 0);
   }
 
   public freezeTimer() {
     this.clearCurrentInterval();
+  }
+
+  isTimerRunning() {
+    return !!this.timerInterval;
   }
 }

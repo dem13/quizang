@@ -6,8 +6,6 @@ import { QuizResult } from '../quiz-result';
 import { QuizGame } from '../../../domain/quiz-game';
 import { QuizTimerComponent } from './quiz-timer/quiz-timer.component';
 
-const ANSWER_TIME = 2;
-
 @Component({
   selector: 'app-quiz-playground',
   standalone: true,
