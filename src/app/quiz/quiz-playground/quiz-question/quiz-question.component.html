@@ -12,4 +12,15 @@
             </div>
         }
     </div>
+    @if (question.isAnswered() && !question.wasSkipped() && !question.isCorrectlyAnswered()) {
+        <audio autoplay>
+            <source src="/error.mp3" type="audio/mpeg">
+        </audio>
+    }
+
+    @if (question.isAnswered() && question.isCorrectlyAnswered()) {
+        <audio autoplay>
+            <source src="/success.mp3" type="audio/mpeg">
+        </audio>  
+    }
 </div>
