@@ -28,7 +28,7 @@ body {
     color: var(--ft-color);
 }
 
-input {
+input, select {
     outline: none !important;
     background-color: var(--secondary-light-color);
     border: none;

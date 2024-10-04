@@ -45,9 +45,8 @@ export class QuizTimerComponent {
   }
 
   public startTimer(seconds: number) {
-    this.initialized = true;
-
     setTimeout(() => {
+      this.initialized = true;
       this.clearCurrentInterval();
       this.timeLeft = seconds;
       this.timerInterval = setInterval(this.onTick.bind(this), 1000);

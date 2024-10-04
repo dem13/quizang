@@ -3,29 +3,41 @@
         <span class="material-symbols-outlined">
             group
         </span>
-        <input type="number" (input)="onSettingInput('playersAmount')($event)" value="{{launchSettings.playersAmount}}">
+        <input type="number" (input)="onNumberSettingInput('playersAmount')($event)" value="{{launchSettings.playersAmount}}">
     </div>
 
     <div class="quiz-launch-settings-item">
         <span class="material-symbols-outlined">
             favorite
         </span>
-        <input type="number" (input)="onSettingInput('livesAmount')($event)" value="{{launchSettings.livesAmount}}">
+        <input type="number" (input)="onNumberSettingInput('livesAmount')($event)" value="{{launchSettings.livesAmount}}">
     </div>
 
     <div class="quiz-launch-settings-item">
         <span class="material-symbols-outlined">
             refresh
         </span>
-        <input type="number" (input)="onSettingInput('roundsAmount')($event)" value="{{launchSettings.roundsAmount}}">
+        <input type="number" (input)="onNumberSettingInput('roundsAmount')($event)" value="{{launchSettings.roundsAmount}}">
     </div>
 
     <div class="quiz-launch-settings-item">
         <span class="material-symbols-outlined">
             timer
         </span>
-        <input type="number" (input)="onSettingInput('answerMinutes')($event)" value="{{addZeroToDigit(launchSettings.answerMinutes)}}">
+        <input type="number" (input)="onNumberSettingInput('answerMinutes')($event)" value="{{addZeroToDigit(launchSettings.answerMinutes)}}">
         
-        <input type="number" (input)="onSettingInput('answerSeconds')($event)" value="{{addZeroToDigit(launchSettings.answerSeconds)}}">
+        <input type="number" (input)="onNumberSettingInput('answerSeconds')($event)" value="{{addZeroToDigit(launchSettings.answerSeconds)}}">
+    </div>
+    
+    <div class="quiz-launch-settings-item">
+        <span class="material-symbols-outlined">
+            psychology
+        </span>
+        <select (change)="onDiffcultySettingInput($event)">
+            <option value="">Any Diffculty</option>
+            <option value="easy">Easy</option>
+            <option value="medium">Medium</option>
+            <option value="hard">Hard</option>
+        </select>
     </div>
 </div>

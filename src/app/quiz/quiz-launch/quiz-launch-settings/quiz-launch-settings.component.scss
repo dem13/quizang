@@ -15,5 +15,9 @@
             max-width: 70px;
             font-size: var(--quiz-launch-font-size);
         }
+
+        select {
+            font-size: var(--quiz-launch-font-size);
+        }
     }
 }

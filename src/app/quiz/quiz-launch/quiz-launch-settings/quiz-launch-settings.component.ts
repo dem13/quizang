@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Output } from '@angular/core';
-import { LaunchSettings, LaunchSettingNames } from './launch-settings';
+import { LaunchSettings, LaunchNumberSettings, Difficulty } from './launch-settings';
 import { addZeroToDigit } from '../../../../helpers/add-zero-to-digit';
 
 @Component({
@@ -20,17 +20,24 @@ export class QuizLaunchSettingsComponent {
     roundsAmount: 10,
     answerMinutes: 1,
     answerSeconds: 0,
+    difficulty: '',
   };
 
   ngOnInit() {
     this.settingChaned.emit(this.launchSettings);
   }
 
-  onSettingInput(settingName: LaunchSettingNames) {
+  onNumberSettingInput(settingName: keyof LaunchNumberSettings) {
     return (event: Event) => {
       const input = event.target as HTMLInputElement;
       this.launchSettings[settingName] = +input.value;
       this.settingChaned.emit(this.launchSettings);
     };
+  }
+
+  onDiffcultySettingInput(event: Event) {
+    const input = event.target as HTMLInputElement;
+    this.launchSettings.difficulty = input.value as Difficulty;
+    this.settingChaned.emit(this.launchSettings);
   }
 }

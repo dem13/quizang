@@ -8,8 +8,8 @@ import { HttpClient } from '@angular/common/http';
 export class OpentdbQuestionRepository implements QuizQuestionRepository {
   constructor(private http: HttpClient) { }
 
-  async getMany(limit: number): Promise<QuizQuestion[]> {
-    const response = await firstValueFrom(this.http.get<OpentdbQuestionsResponse>(`https://opentdb.com/api.php?amount=${limit}&type=multiple`));
+  async getMany(limit: number, difficulty: string): Promise<QuizQuestion[]> {
+    const response = await firstValueFrom(this.http.get<OpentdbQuestionsResponse>(`https://opentdb.com/api.php?amount=${limit}&difficulty=${difficulty}&type=multiple`));
 
     if (response.response_code !== 0) {
       throw new Error('Failed to fetch questions. Response code: ' + response.response_code);

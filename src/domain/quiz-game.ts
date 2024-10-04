@@ -93,7 +93,7 @@ export class QuizGame {
 
   async init() {
     const questionCount = this.players.length * this.settings.roundsAmount;
-    this.questions = await this.questionRepository.getMany(questionCount);
+    this.questions = await this.questionRepository.getMany(questionCount, this.settings.difficulty);
     this.currentTurn = this.buildTurnByIndex(FIRST_TURN_INDEX);
   }
 }

@@ -9,5 +9,6 @@ export class QuizSettings {
     public readonly roundsAmount: number, 
     public readonly playersSettings: QuizPlayerSetting[],
     public readonly answerTime: number,
+    public readonly difficulty: string,
   ) {}
 }

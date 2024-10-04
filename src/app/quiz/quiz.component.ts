@@ -5,8 +5,8 @@ import { QuizResult } from './quiz-result';
 import { QuizPodiumComponent } from './quiz-podium/quiz-podium.component';
 import { QuizSettings } from '../../domain/quiz-settings';
 import { QuizGame } from '../../domain/quiz-game';
-import { OpentdbStaticQuestionRepository } from './quiz-playground/opendbt-static-question-repository';
 import { HttpClient } from '@angular/common/http';
+import { OpentdbQuestionRepository } from './quiz-playground/opendbt-question-repository';
 
 @Component({
   selector: 'app-quiz',
@@ -23,7 +23,7 @@ export class QuizComponent {
   constructor(private http: HttpClient) { }
 
   async onLaunch(settings: QuizSettings) {
-    const quizGame = new QuizGame(settings, new OpentdbStaticQuestionRepository(this.http));
+    const quizGame = new QuizGame(settings, new OpentdbQuestionRepository(this.http));
     quizGame.onEnd(() => this.quizResult = new QuizResult(quizGame.getPlayers()));
     await quizGame.init();
 
