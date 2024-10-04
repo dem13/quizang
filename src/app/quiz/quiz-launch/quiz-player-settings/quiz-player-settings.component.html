@@ -1,8 +1,0 @@
-<div class="quiz-player-settings">
-    @for(playerName of playerNames; let i = $index; track i;) {
-    <div class="quiz-player-settings-input">
-        <span>{{i + 1}}.</span> <input (input)="onPlayerNameInput(i)($event)" placeholder="Player #{{i + 1}}"
-            type="text" value="{{ playerName }}">
-    </div>
-    }
-</div>

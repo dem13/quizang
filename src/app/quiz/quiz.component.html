@@ -1,9 +1,0 @@
-<div class="quiz">
-    @if (!quizGame) {
-        <app-quiz-launch (launched)="onLaunch($event)"></app-quiz-launch>
-    } @else if(!quizResult) {
-        <app-quiz-playground [quizGame]="quizGame"></app-quiz-playground>
-    } @else {
-        <app-quiz-podium (restarted)="onRestart()" [quizResult]="quizResult"></app-quiz-podium>
-    }
-</div>
